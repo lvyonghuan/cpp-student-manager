@@ -103,7 +103,7 @@ student sqlite_connect::QueryStudentByID(int id){
 
         return student(id, name, age, sex);
     } else {
-        qDebug() << "没有找到学生"<<id;
+        qDebug() << "没有找到学生:"<<id;
         return student();
     }
 }
@@ -126,7 +126,7 @@ course sqlite_connect::QueryCourseByID(int id){
 
         return course(id, name, credits); // 返回查询到的course对象
     } else {
-        qDebug() << "没有找到课程";
+        qDebug() << "没有找到课程:"<<id;
         return course();
     }
 }

@@ -18,12 +18,12 @@ int main(int argc, char *argv[])
 
     sqlite_connect db;
 
-    std::vector<selection> temp=db.QuerySelection();
-    while(!temp.empty()){
-        selection temp1=temp.back();
-        qDebug()<<temp1.course::name<<temp1.student::name;
-        temp.pop_back();
-    }
+    // std::vector<selection> temp=db.QuerySelection();
+    // while(!temp.empty()){
+    //     selection temp1=temp.back();
+    //     qDebug()<<temp1.course::name<<temp1.student::name;
+    //     temp.pop_back();
+    // }
 
     return app.exec();
 }
