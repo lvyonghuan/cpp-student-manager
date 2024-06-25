@@ -16,11 +16,14 @@ qt_add_executable(appstudent-manager
 qt_add_qml_module(appstudent-manager
     URI student-manager
     VERSION 1.0
-    QML_FILES Main.qml
+    QML_FILES
     SOURCES
     SOURCES sqlite_connect.h sqlite_connect.cpp
     SOURCES model.h
     SOURCES sqlite_operate.cpp
+    SOURCES manager_ui.h manager_ui.cpp
+    RESOURCES
+    QML_FILES Main.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

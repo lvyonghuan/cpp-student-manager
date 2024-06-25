@@ -27,6 +27,14 @@ public:
     student QueryStudentByID(int id);
     course QueryCourseByID(int id);
 
+    //删除
+    QString DeleteStudentByID(int id);
+    QString DeleteCourseByID(int id);
+    QString DeleteSelection(int student_id,int course_id);
+
+    //改
+    QString UploadStudentScore(int student_id,int course_id,int score);
+
 private:
     QSqlDatabase db;
 

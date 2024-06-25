@@ -12,6 +12,9 @@ sqlite_connect::sqlite_connect() {
     db.setDatabaseName("student.sqlite");
     db.open();
 
+    QSqlQuery query(db);
+    query.exec("PRAGMA foreign_keys = ON;");
+
     initTables(db);
 }
 
@@ -60,7 +63,7 @@ void CreateStudentTable(QSqlDatabase &db){
                "(id INTEGER PRIMARY KEY,"
                "name VARCHAR(32),"
                "age INTEGER,"
-               "sex VARCHAR(1))");
+               "sex VARCHAR(1) CHECK (sex = '男' OR sex = '女'))");
 }
 
 //创建课程表
@@ -80,6 +83,6 @@ void CreateSelectionTable(QSqlDatabase &db) {
                "course_id INTEGER,"
                "score INTEGER,"
                "PRIMARY KEY(student_id, course_id),"
-               "FOREIGN KEY(student_id) REFERENCES student(id),"
-               "FOREIGN KEY(course_id) REFERENCES course(id))");
+               "FOREIGN KEY(student_id) REFERENCES student(id) ON DELETE CASCADE,"
+               "FOREIGN KEY(course_id) REFERENCES course(id) ON DELETE CASCADE)");
 }

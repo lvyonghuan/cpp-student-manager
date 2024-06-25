@@ -1,11 +1,15 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 
+#include "manager_ui.h"
 #include "sqlite_connect.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+
+    qmlRegisterType<manager_ui>("manager_ui", 1, 0, "ManagerUI");
 
     QQmlApplicationEngine engine;
     QObject::connect(
@@ -18,12 +22,6 @@ int main(int argc, char *argv[])
 
     sqlite_connect db;
 
-    // std::vector<selection> temp=db.QuerySelection();
-    // while(!temp.empty()){
-    //     selection temp1=temp.back();
-    //     qDebug()<<temp1.course::name<<temp1.student::name;
-    //     temp.pop_back();
-    // }
-
     return app.exec();
 }
+

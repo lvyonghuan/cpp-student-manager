@@ -157,3 +157,58 @@ std::vector<selection> sqlite_connect::QuerySelection(){
 
     return response;
 }
+
+QString sqlite_connect::DeleteStudentByID(int id){
+    QSqlQuery sqlQuery;
+    QString sql=("delete from student where id = ?");
+    sqlQuery.prepare(sql);
+    sqlQuery.addBindValue(id);
+
+    if(sqlQuery.exec()){
+        return "删除成功";
+    }else{
+        return "删除失败";
+    }
+}
+
+QString sqlite_connect::DeleteCourseByID(int id){
+    QSqlQuery sqlQuery;
+    QString sql=("delete from course where id = ?");
+    sqlQuery.prepare(sql);
+    sqlQuery.addBindValue(id);
+
+    if(sqlQuery.exec()){
+        return "删除成功";
+    }else{
+        return "删除失败";
+    }
+}
+
+QString sqlite_connect::DeleteSelection(int student_id, int course_id){
+    QSqlQuery sqlQuery;
+    QString sql = "delete from selection where student_id = ? and course_id = ?";
+    sqlQuery.prepare(sql);
+    sqlQuery.addBindValue(student_id);
+    sqlQuery.addBindValue(course_id);
+
+    if(sqlQuery.exec()){
+        return "删除成功";
+    }else{
+        return "删除失败";
+    }
+}
+
+QString sqlite_connect::UploadStudentScore(int student_id, int course_id, int score){
+    QSqlQuery sqlQuery;
+    QString sql = "update selection set score = ? where student_id = ? and course_id = ?";
+    sqlQuery.prepare(sql);
+    sqlQuery.addBindValue(score);
+    sqlQuery.addBindValue(student_id);
+    sqlQuery.addBindValue(course_id);
+
+    if(sqlQuery.exec()){
+        return "上传成功";
+    }else{
+        return "上传失败";
+    }
+}
