@@ -13,6 +13,9 @@ public:
 
 public slots:
     Q_INVOKABLE QString QueryStudentButton();
+    Q_INVOKABLE QString QueryCourseButton();
+    Q_INVOKABLE QString QuerySelectionButton();
+    Q_INVOKABLE QString QueryStudentByStudentID(int id);
 };
 
 #endif // MANAGER_UI_H

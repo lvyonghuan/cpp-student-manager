@@ -37,12 +37,6 @@ public:
 
 private:
     QSqlDatabase db;
-
-// public:
-//     //表名
-//     const QString student="student";
-//     const QString selection="selection";
-//     const QString course="course";
 };
 
 #endif // SQLITE_CONNECT_H

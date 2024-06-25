@@ -10,23 +10,82 @@ Window {
     title: qsTr("控制界面")
 
     ManagerUI{
-        id:managerUI
+    id:managerUI
     }
 
-    Button{
-        id: queryButton
-        text:"查询学生"
-        anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
+    Rectangle {
+        id: topArea
+                width: parent.width
+                height: 100
+                color: "lightgray"
+                border.color: "black"
+                border.width: 1
+
+        Flow {
+
+            anchors.fill: parent
+            anchors.margins: 10
+            spacing: 10
+
+        Button{
+        id: queryStudent
+        text:"查询学生信息"
         onClicked:textArea.text=managerUI.QueryStudentButton()
+        }
+
+        Button{
+            id:queryCourse
+            text:"查询课程信息"
+            onClicked:textArea.text=managerUI.QueryCourseButton()
+        }
+
+        Button{
+            id:querySelection
+            text:"查询选课信息"
+            onClicked: textArea.text=managerUI.QuerySelectionButton()
+        }
+
+        Button{
+            id:queryStudentByID
+            text:"学号查询学生"
+            onClicked:queryStudentByIDDialog.open()
+        }
+        }
+    }
+
+    Dialog{
+        id:queryStudentByIDDialog
+        modal:true
+        title:"请输入内容"
+
+        contentItem:Column{
+            spacing:10
+            width:parent.width
+            padding:10
+
+            TextField{
+                id:queryStudentByIDInputFile
+                placeholderText: "请输入学号"
+                inputMethodHints: Qt.ImhDigitsOnly // 限定输入为数字
+            }
+        }
+
+        Button{
+            text:"提交"
+            onClicked:{
+                textArea.text=managerUI.QueryStudentByStudentID(queryStudentByIDInputFile.text)
+                queryStudentByIDDialog.close()
+            }
+
+        }
     }
 
     TextArea {
             id: textArea
-            anchors.top: queryButton.bottom
-            anchors.bottom: parent.bottom
+            anchors.top: topArea.bottom
             anchors.left: parent.left
             anchors.right: parent.right
+            anchors.bottom: parent.bottom
             readOnly: true
         }
 }
