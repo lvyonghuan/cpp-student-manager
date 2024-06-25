@@ -62,7 +62,31 @@ Window {
             text:"插入学生信息"
             onClicked: insertStudentInfoDialog.open()
         }
+
+        Button{
+            id:insertCourseInfo
+            text:"插入课程信息"
+            onClicked: insertCourseInfoDialog.open()
         }
+
+        Button{
+            id:insertSelectionInfo
+            text:"插入选课信息"
+            onClicked: insertSelectionInfoDialog.open()
+        }
+
+        Button{
+            id:queryStudentScore
+            text:"查询学生成绩"
+            onClicked: queryStudentScoreDialog.open()
+        }
+
+        Button{
+            id:uploadStudentScore
+            text:"上传学生成绩"
+            onClicked:uploadStudentScoreDialog.open()
+        }
+    }
     }
 
     Dialog{
@@ -153,6 +177,131 @@ Window {
                 insertStudentInfoDialog.close()
             }
 
+        }
+    }
+
+    Dialog{
+        id:insertCourseInfoDialog
+        modal:true
+        title:"请输入内容"
+
+        contentItem:Column{
+            spacing:10
+            width:parent.width
+            padding:10
+
+            TextField{
+                id:insertCourseInfoCourseIDInputFile
+                placeholderText: "请输入课程号"
+            }
+            TextField{
+                id:insertCourseInfoCourseNameInputFile
+                placeholderText: "请输入课程名"
+            }
+            TextField{
+                id:insertCourseInfoCourseCreditsInputFile
+                placeholderText: "请输入学分"
+            }
+        }
+
+        Button{
+            text:"提交"
+            onClicked:{
+                textArea.text=managerUI.InsertCourse(insertCourseInfoCourseIDInputFile.text,insertCourseInfoCourseNameInputFile.text,insertCourseInfoCourseCreditsInputFile.text)
+                insertCourseInfoDialog.close()
+            }
+
+        }
+    }
+
+
+    Dialog{
+        id:insertSelectionInfoDialog
+        modal:true
+        title:"请输入内容"
+
+        contentItem:Column{
+            spacing:10
+            width:parent.width
+            padding:10
+
+            TextField{
+                id:insertSelectionStudentIDInputFile
+                placeholderText: "请输入学号"
+            }
+            TextField{
+                id:insertSelectionCourseIDInputFile
+                placeholderText: "请输入课程号"
+            }
+            }
+
+
+        Button{
+            text:"提交"
+            onClicked:{
+                textArea.text=managerUI.InsertSelection(insertSelectionStudentIDInputFile.text,insertSelectionCourseIDInputFile.text)
+                insertSelectionInfoDialog.close()
+            }
+        }
+    }
+
+    Dialog{
+        id:queryStudentScoreDialog
+        modal:true
+        title:"请输入内容"
+
+        contentItem:Column{
+            spacing:10
+            width:parent.width
+            padding:10
+
+            TextField{
+                id:queryStudentScoreInputFile
+                placeholderText: "请输入学号"
+            }
+            }
+
+
+        Button{
+            text:"提交"
+            onClicked:{
+                textArea.text=managerUI.QuerySelectionScoreByStudentID(queryStudentScoreInputFile.text)
+                queryStudentScoreDialog.close()
+            }
+        }
+    }
+
+    Dialog{
+        id:uploadStudentScoreDialog
+        modal:true
+        title:"请输入内容"
+
+        contentItem:Column{
+            spacing:10
+            width:parent.width
+            padding:10
+
+            TextField{
+                id:uploadStudentScoreStudentIDInputFile
+                placeholderText: "请输入学号"
+            }
+            TextField{
+                id:iuploadStudentScoreCourseIDInputFile
+                placeholderText: "请输入课程号"
+            }
+            TextField{
+                id:uploadStudentScoreScoreInputFile
+                placeholderText:"请输入学生成绩"
+            }
+            }
+
+
+        Button{
+            text:"提交"
+            onClicked:{
+                textArea.text=managerUI.UpdateStudentScore(uploadStudentScoreStudentIDInputFile.text,iuploadStudentScoreCourseIDInputFile.text,uploadStudentScoreScoreInputFile.text)
+                uploadStudentScoreDialog.close()
+            }
         }
     }
 

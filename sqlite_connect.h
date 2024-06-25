@@ -27,6 +27,7 @@ public:
     student QueryStudentByID(int id);
     course QueryCourseByID(int id);
     course QueryCourseByName(QString name);
+    std::vector<selection> QuerySelectionByStudentID(int id);
 
     //删除
     QString DeleteStudentByID(int id);

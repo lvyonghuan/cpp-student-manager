@@ -17,10 +17,13 @@ public slots:
     Q_INVOKABLE QString QuerySelectionButton();
     Q_INVOKABLE QString QueryStudentByStudentID(int id);
     Q_INVOKABLE QString QueryCourseByCourseName(QString name);
+    Q_INVOKABLE QString QuerySelectionScoreByStudentID(int id);
 
     Q_INVOKABLE QString InsertStuent(int id,QString name,int age,QString sex);
-    // Q_INVOKABLE QString InsertCourse(int id,QString name,int credits);
-    // Q_INVOKABLE QString InsertSelection(int studnet_id,int course_id);
+    Q_INVOKABLE QString InsertCourse(int id,QString name,int credits);
+    Q_INVOKABLE QString InsertSelection(int studnet_id,int course_id);
+
+    Q_INVOKABLE QString UpdateStudentScore(int student_id,int course_id,int score);
 };
 
 #endif // MANAGER_UI_H

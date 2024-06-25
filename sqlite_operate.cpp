@@ -176,6 +176,32 @@ course sqlite_connect::QueryCourseByName(QString name){
     }
 }
 
+std::vector<selection> sqlite_connect::QuerySelectionByStudentID(int id){
+    student s=QueryStudentByID(id);
+    std::vector<selection> response;
+
+    QSqlQuery sqlQuery;
+    QString sql=QString("select * from selection where student_id=%1 order by course_id;").arg(id);
+
+    if(sqlQuery.exec(sql)){
+        while(sqlQuery.next()){
+            int course_id,score;
+            score=sqlQuery.value("score").toInt();
+            course_id=sqlQuery.value("course_id").toInt();
+
+            course tempC=QueryCourseByID(course_id);
+
+            selection temp=selection(s,tempC,score);
+
+            response.push_back(temp);
+        }
+    }else{
+        qDebug()<<"查询"<<id<<"错误";
+    }
+
+    return response;
+}
+
 QString sqlite_connect::DeleteStudentByID(int id){
     QSqlQuery sqlQuery;
     QString sql=("delete from student where id = ?");

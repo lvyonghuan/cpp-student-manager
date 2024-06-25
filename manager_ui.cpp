@@ -56,7 +56,36 @@ QString manager_ui::QueryCourseByCourseName(QString name){
     return courseInfo;
 }
 
+QString manager_ui::QuerySelectionScoreByStudentID(int id){
+    std::vector<selection> selections=sqlite_connect::QuerySelection();
+    QString selectionInfo;
+
+    for(const auto& selection :selections){
+        selectionInfo += QString("课程名:%1\t成绩:%2\n")
+                             .arg(selection.course::name)
+                             .arg(selection.score);
+    }
+
+    return selectionInfo;
+}
+
 QString manager_ui::InsertStuent(int id,QString name,int age,QString sex){
     QString info=sqlite_connect::InsertStudentTable(id,name,age,sex);
     return info;
 }
+
+QString manager_ui::InsertCourse(int id,QString name,int credits){
+    QString info=sqlite_connect::InsertCourseTable(id,name,credits);
+    return info;
+}
+
+QString manager_ui::InsertSelection(int student_id,int course_id){
+    QString info=sqlite_connect::InsertSelectionTable(student_id,course_id);
+    return info;
+}
+
+QString manager_ui::UpdateStudentScore(int student_id,int course_id,int score){
+    QString info=sqlite_connect::UploadStudentScore(student_id,course_id,score);
+    return info;
+}
+
