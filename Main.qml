@@ -86,6 +86,24 @@ Window {
             text:"上传学生成绩"
             onClicked:uploadStudentScoreDialog.open()
         }
+
+        Button{
+            id:deleteStudent
+            text:"删除学生"
+            onClicked: deleteStudentDialog.open()
+        }
+
+        Button{
+            id:deleteCourse
+            text:"删除课程"
+            onClicked: deleteCourseDialog.open()
+        }
+
+        Button{
+            id:deleteSelection
+            text:"删除选课"
+            onClicked: deleteSelectionDialog.open()
+        }
     }
     }
 
@@ -301,6 +319,88 @@ Window {
             onClicked:{
                 textArea.text=managerUI.UpdateStudentScore(uploadStudentScoreStudentIDInputFile.text,iuploadStudentScoreCourseIDInputFile.text,uploadStudentScoreScoreInputFile.text)
                 uploadStudentScoreDialog.close()
+            }
+        }
+    }
+
+    Dialog{
+        id:deleteStudentDialog
+        modal:true
+        title:"请输入内容"
+
+        contentItem:Column{
+            spacing:10
+            width:parent.width
+            padding:10
+
+            TextField{
+                id:deleteStudentStudentIDInputFile
+                placeholderText: "请输入学号"
+            }
+            }
+
+
+        Button{
+            text:"提交"
+            onClicked:{
+                textArea.text=managerUI.DeleteStudent(deleteStudentStudentIDInputFile.text)
+                deleteStudentDialog.close()
+            }
+        }
+    }
+
+    Dialog{
+        id:deleteCourseDialog
+        modal:true
+        title:"请输入内容"
+
+        contentItem:Column{
+            spacing:10
+            width:parent.width
+            padding:10
+
+            TextField{
+                id:deleteCourseCourseIDInputFile
+                placeholderText: "请输入课程号"
+            }
+            }
+
+
+        Button{
+            text:"提交"
+            onClicked:{
+                textArea.text=managerUI.DeleteCourse(deleteCourseCourseIDInputFile.text)
+                deleteCourseDialog.close()
+            }
+        }
+    }
+
+    Dialog{
+        id:deleteSelectionDialog
+        modal:true
+        title:"请输入内容"
+
+        contentItem:Column{
+            spacing:10
+            width:parent.width
+            padding:10
+
+            TextField{
+                id:deleteSelectionStudentIDInputFile
+                placeholderText: "请输入学号"
+            }
+            TextField{
+                id:deleteSelectionCourseIDInputFile
+                placeholderText: "请输入课程号"
+            }
+            }
+
+
+        Button{
+            text:"提交"
+            onClicked:{
+                textArea.text=managerUI.DeleteSelection(deleteSelectionStudentIDInputFile.text,deleteSelectionCourseIDInputFile.text)
+                deleteSelectionDialog.close()
             }
         }
     }

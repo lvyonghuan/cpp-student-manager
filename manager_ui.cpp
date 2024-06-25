@@ -89,3 +89,17 @@ QString manager_ui::UpdateStudentScore(int student_id,int course_id,int score){
     return info;
 }
 
+QString manager_ui::DeleteStudent(int id){
+    QString info=sqlite_connect::DeleteStudentByID(id);
+    return info;
+}
+
+QString manager_ui::DeleteCourse(int id){
+    QString info=sqlite_connect::DeleteCourseByID(id);
+    return info;
+}
+
+QString manager_ui::DeleteSelection(int student_Id,int course_id){
+    QString info=sqlite_connect::DeleteSelection(student_Id,course_id);
+    return info;
+}
