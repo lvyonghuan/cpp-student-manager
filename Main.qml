@@ -50,6 +50,12 @@ Window {
             text:"学号查询学生"
             onClicked:queryStudentByIDDialog.open()
         }
+
+        Button{
+            id:queryCourseByCourseName
+            text:"课程名查询课程"
+            onClicked: queryCourseByNameDialog.open()
+        }
         }
     }
 
@@ -75,6 +81,32 @@ Window {
             onClicked:{
                 textArea.text=managerUI.QueryStudentByStudentID(queryStudentByIDInputFile.text)
                 queryStudentByIDDialog.close()
+            }
+
+        }
+    }
+
+    Dialog{
+        id:queryCourseByNameDialog
+        modal:true
+        title:"请输入内容"
+
+        contentItem:Column{
+            spacing:10
+            width:parent.width
+            padding:10
+
+            TextField{
+                id:queryCourseByNameInputFile
+                placeholderText: "请输入课程名"
+            }
+        }
+
+        Button{
+            text:"提交"
+            onClicked:{
+                textArea.text=managerUI.QueryCourseByCourseName(queryCourseByNameInputFile.text)
+                queryCourseByNameDialog.close()
             }
 
         }

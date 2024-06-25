@@ -36,7 +36,7 @@ std::vector<student> sqlite_connect::QueryStudent(){
     std::vector<student> response;
 
     QSqlQuery sqlQuery;
-    QString sql=("select * from student order by id desc");
+    QString sql=("select * from student order by id");
     if(sqlQuery.exec(sql)){
         while(sqlQuery.next()){
             int id,age;
@@ -62,7 +62,7 @@ std::vector<course> sqlite_connect::QueryCourse(){
     std::vector<course> response;
 
     QSqlQuery sqlQuery;
-    QString sql=("select * from course order by id desc");
+    QString sql=("select * from course order by id");
     if(sqlQuery.exec(sql)){
         while(sqlQuery.next()){
             int id,credits;
@@ -135,7 +135,7 @@ std::vector<selection> sqlite_connect::QuerySelection(){
     std::vector<selection> response;
 
     QSqlQuery sqlQuery;
-    QString sql=("select * from selection order by student_id desc");
+    QString sql=("select * from selection order by student_id");
     if(sqlQuery.exec(sql)){
         while(sqlQuery.next()){
             int student_id,course_id,score;
@@ -156,6 +156,24 @@ std::vector<selection> sqlite_connect::QuerySelection(){
     }
 
     return response;
+}
+
+
+course sqlite_connect::QueryCourseByName(QString name){
+    QSqlQuery sqlQuery;
+    QString sql=QString("select * from course where name = '%1';").arg(name);
+
+    if(sqlQuery.exec(sql)){
+        sqlQuery.next();
+        int id = sqlQuery.value("id").toInt();
+        QString name = sqlQuery.value("name").toString();
+        int credits = sqlQuery.value("credits").toInt();
+
+        return course(id, name, credits); // 返回查询到的course对象
+    } else {
+        qDebug() << "没有找到课程:"<<name<<"\n错误信息:"<<sqlQuery.lastError().text();
+        return course();
+    }
 }
 
 QString sqlite_connect::DeleteStudentByID(int id){

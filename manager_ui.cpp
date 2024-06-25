@@ -45,3 +45,13 @@ QString manager_ui::QueryStudentByStudentID(int id){
 
     return studentInfo;
 }
+
+QString manager_ui::QueryCourseByCourseName(QString name){
+    course temp=sqlite_connect::QueryCourseByName(name);
+
+    QString courseInfo;
+    courseInfo+=QString("ID:%1\t名称:%2\t学分:%3\n")
+                      .arg(temp.id).arg(temp.name).arg(temp.credits);
+
+    return courseInfo;
+}
