@@ -56,6 +56,12 @@ Window {
             text:"课程名查询课程"
             onClicked: queryCourseByNameDialog.open()
         }
+
+        Button{
+            id:insertStudentInfo
+            text:"插入学生信息"
+            onClicked: insertStudentInfoDialog.open()
+        }
         }
     }
 
@@ -107,6 +113,44 @@ Window {
             onClicked:{
                 textArea.text=managerUI.QueryCourseByCourseName(queryCourseByNameInputFile.text)
                 queryCourseByNameDialog.close()
+            }
+
+        }
+    }
+
+    Dialog{
+        id:insertStudentInfoDialog
+        modal:true
+        title:"请输入内容"
+
+        contentItem:Column{
+            spacing:10
+            width:parent.width
+            padding:10
+
+            TextField{
+                id:insertStudentInfoStudentIDInputFile
+                placeholderText: "请输入学号"
+            }
+            TextField{
+                id:insertStudentInfoStudentNameInputFile
+                placeholderText: "请输入姓名"
+            }
+            TextField{
+                id:insertStudentInfoStudentAgeInputFile
+                placeholderText: "请输入年龄"
+            }
+            TextField{
+                id:insertStudentInfoStudentSexInputFile
+                placeholderText: "请输入性别(男/女)"
+            }
+        }
+
+        Button{
+            text:"提交"
+            onClicked:{
+                textArea.text=managerUI.InsertStuent(insertStudentInfoStudentIDInputFile.text,insertStudentInfoStudentNameInputFile.text,insertStudentInfoStudentAgeInputFile.text,insertStudentInfoStudentSexInputFile.text)
+                insertStudentInfoDialog.close()
             }
 
         }

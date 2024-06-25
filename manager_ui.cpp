@@ -55,3 +55,8 @@ QString manager_ui::QueryCourseByCourseName(QString name){
 
     return courseInfo;
 }
+
+QString manager_ui::InsertStuent(int id,QString name,int age,QString sex){
+    QString info=sqlite_connect::InsertStudentTable(id,name,age,sex);
+    return info;
+}
