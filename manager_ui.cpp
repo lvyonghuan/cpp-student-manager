@@ -58,7 +58,7 @@ QString manager_ui::QueryCourseByCourseName(QString name){
 }
 
 QString manager_ui::QuerySelectionScoreByStudentID(int id){
-    std::vector<selection> selections=sqlite_connect::QuerySelection();
+    std::vector<selection> selections=sqlite_connect::QuerySelectionByStudentID(id);
     QString selectionInfo;
 
     for(const auto& selection :selections){

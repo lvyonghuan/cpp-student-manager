@@ -189,6 +189,8 @@ std::vector<selection> sqlite_connect::QuerySelectionByStudentID(int id){
             score=sqlQuery.value("score").toInt();
             course_id=sqlQuery.value("course_id").toInt();
 
+            qDebug()<<sqlQuery.value("student_id").toInt();
+
             course tempC=QueryCourseByID(course_id);
 
             selection temp=selection(s,tempC,score);
