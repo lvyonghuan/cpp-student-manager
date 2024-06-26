@@ -180,7 +180,7 @@ Window {
             }
             TextField{
                 id:insertStudentInfoStudentAgeInputFile
-                placeholderText: "请输入年龄"
+                placeholderText: "请输入年龄(18~60)"
             }
             TextField{
                 id:insertStudentInfoStudentSexInputFile
@@ -218,7 +218,7 @@ Window {
             }
             TextField{
                 id:insertCourseInfoCourseCreditsInputFile
-                placeholderText: "请输入学分"
+                placeholderText: "请输入学分(>0)"
             }
         }
 
@@ -309,7 +309,7 @@ Window {
             }
             TextField{
                 id:uploadStudentScoreScoreInputFile
-                placeholderText:"请输入学生成绩"
+                placeholderText:"请输入学生成绩(0~100)"
             }
             }
 

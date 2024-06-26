@@ -1,4 +1,5 @@
 #include "manager_ui.h"
+#include "detection.h"
 
 QString manager_ui::QueryStudentButton(){
     std::vector<student> students=sqlite_connect::QueryStudent();
@@ -70,11 +71,22 @@ QString manager_ui::QuerySelectionScoreByStudentID(int id){
 }
 
 QString manager_ui::InsertStuent(int id,QString name,int age,QString sex){
+    if(!IsLegalAge(age)){
+        return "非法年龄参数，年龄应位于18~60之间";
+    }
+    if(!IsLegalSex(sex)){
+        return "非法性别参数，性别只能是“男”或“女”";
+    }
+
     QString info=sqlite_connect::InsertStudentTable(id,name,age,sex);
     return info;
 }
 
 QString manager_ui::InsertCourse(int id,QString name,int credits){
+    if(!IsLegalCredits(credits)){
+        return "非法学分参数，学分应当大于0";
+    }
+
     QString info=sqlite_connect::InsertCourseTable(id,name,credits);
     return info;
 }
@@ -85,6 +97,10 @@ QString manager_ui::InsertSelection(int student_id,int course_id){
 }
 
 QString manager_ui::UpdateStudentScore(int student_id,int course_id,int score){
+    if(!IsLegalScore(score)){
+        return "非法分数参数，分数应当位于0~100之间";
+    }
+
     QString info=sqlite_connect::UploadStudentScore(student_id,course_id,score);
     return info;
 }

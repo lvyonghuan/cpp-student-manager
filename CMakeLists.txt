@@ -24,6 +24,8 @@ qt_add_qml_module(appstudent-manager
     SOURCES manager_ui.h manager_ui.cpp
     RESOURCES
     QML_FILES Main.qml
+    SOURCES detection.cpp
+    SOURCES detection.h
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
